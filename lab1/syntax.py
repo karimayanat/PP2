@@ -3,4 +3,4 @@ if 7 > 3:
 x = 5
 y = "Hello, World!"
 #comment
-print(y)
+print(y, x)
