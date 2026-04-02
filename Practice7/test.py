@@ -2,11 +2,11 @@ import psycopg2
 
 try:
     conn = psycopg2.connect(
-        dbname="phonebook_db",
+        dbname="postgres",
         user="postgres",
-        password="1234",
+        password="12345",
         host="127.0.0.1",
-        port=5432
+        port=5433
     )
     print("OK")
 except Exception as e:

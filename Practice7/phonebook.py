@@ -29,7 +29,7 @@ def insert_from_csv(filename):
     conn.close()
 
 def insert_from_console():
-    name = input("Enter name:")
+    name = input("Enter name: ")
     phone = input("Enter phone: ")
     conn = connect()
     cur = conn.cursor()
@@ -42,7 +42,7 @@ def insert_from_console():
     conn.close()
 
 def update_contact():
-    name = input("Enter name to update:")
+    name = input("Enter name to update: ")
     new_phone = input("Enter new phone: ")
     conn = connect()
     cur = conn.cursor()
@@ -55,7 +55,7 @@ def update_contact():
     conn.close()
 
 def query_contacts():
-    filter_name = input("Enter name filter(or leave empty):")
+    filter_name = input("Enter name filter(or leave empty): ")
     conn = connect()
     cur = conn.cursor()
     if filter_name:
@@ -91,7 +91,7 @@ def menu():
         print("4. Query contacts")
         print("5. Delete contact")
         print("0. Exit")
-        choise = input("Choose:")
+        choise = input("Choose: ")
         if choise == "1":
             insert_from_csv("contacts.csv")
         elif choise == "2":
