@@ -14,10 +14,10 @@ conn.commit()
 cur.close()
 conn.close()
 
-def insert_from_csv(contacts.csv):
+def insert_from_csv(filename):
     conn = connect()
     cur = conn.cursor()
-    with open(contacts.csv, newline='', encoding='utf-8') as file:
+    with open(filename, newline='', encoding='utf-8') as file:
         reader = csv.DictReader(file)
         for row in reader:
             cur.execute(
