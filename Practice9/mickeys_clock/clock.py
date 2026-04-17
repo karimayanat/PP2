@@ -21,8 +21,9 @@ class MickeyClock:
         center = (screen.get_width() // 2, screen.get_height() // 2)
         rotated_min = pygame.transform.rotate(self.min_arm, angle_min)
         rotated_sec = pygame.transform.rotate(self.sec_arm, angle_sec)
-        screen.blit(self.bg, (100, 100))       
-        screen.blit(rotated_sec, (center[0] - rotated_sec.get_width() // 2, 
-                                  center[1] - rotated_sec.get_height() // 2))
-        screen.blit(rotated_min, (center[0] - rotated_min.get_width() // 2, 
-                                  center[1] - rotated_min.get_height() // 2))
+        bg_rect = self.bg.get_rect(center=center)
+        screen.blit(self.bg, bg_rect)
+        sec_rect = rotated_sec.get_rect(center=center)
+        screen.blit(rotated_sec, sec_rect)
+        min_rect = rotated_min.get_rect(center=center)
+        screen.blit(rotated_min, min_rect)

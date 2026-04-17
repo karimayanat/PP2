@@ -1,7 +1,7 @@
 import pygame
 from clock import MickeyClock 
 pygame.init()
-screen = pygame.display.set_mode((800, 800))
+screen = pygame.display.set_mode((600, 600))
 pygame.display.set_caption("Mickey Clock OOP")
 clock = pygame.time.Clock()
 mickey_clock = MickeyClock()
