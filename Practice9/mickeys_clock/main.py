@@ -1,22 +1,17 @@
 import pygame
-import sys
-import datetime
-from clock import draw_clock
+from clock import MickeyClock 
 pygame.init()
-WIDTH, HEIGHT = 400, 400
-screen = pygame.display.set_mode((WIDTH, HEIGHT))
-pygame.display.set_caption("Mickey Clock")
+screen = pygame.display.set_mode((800, 800))
+pygame.display.set_caption("Mickey Clock OOP")
 clock = pygame.time.Clock()
-
-while True:
+mickey_clock = MickeyClock()
+running = True
+while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
-            pygame.quit()
-            sys.exit()
-    screen.fill((255, 255, 255))
-    now = datetime.datetime.now()
-    minutes = now.minute
-    seconds = now.second
-    draw_clock(screen, minutes, seconds)
+            running = False
+    screen.fill((255, 255, 255))    
+    mickey_clock.draw(screen)
     pygame.display.flip()
     clock.tick(60)
+pygame.quit()
