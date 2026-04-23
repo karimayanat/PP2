@@ -1,4 +1,4 @@
-from random import randrange, choices
+from random import randrange, choice
 
 class Game:
     def __init__(self, canvas, cell_size, grid_size):
@@ -9,11 +9,6 @@ class Game:
         self.speed = self.base_speed
         self.snake = [[self.grid_size // 2, self.grid_size // 2]]
         self.walls = []
-        self.food_types = [
-            {"color": "red", "weight": 1},
-            {"color": "orange", "weight": 2},
-            {"color": "yellow", "weight": 3},
-        ]
         self.food = self.spawn_food()
         self.score = 0
         self.direction = "Right"
@@ -37,15 +32,7 @@ class Game:
                 return cell
 
     def spawn_food(self):
-        food_type = choices(
-            self.food_types,
-            weights=[70, 20, 10]
-        )[0]
-        return {
-            "pos": self.random_free_cell(),
-            "color": food_type["color"],
-            "weight": food_type["weight"]
-        }
+        return self.random_free_cell()
 
     def out_of_bounds(self, cell):
         x, y = cell
@@ -67,16 +54,16 @@ class Game:
         self.canvas.delete("all")
         self.draw_grid()
         cs = self.cell_size
-        x, y = self.food["pos"]
+        x, y = self.food
         self.canvas.create_rectangle(
             x*cs, y*cs, (x+1)*cs, (y+1)*cs,
-            fill=self.food["color"], width=0
+            fill="red", width=0
         )
         for x, y in self.snake:
             self.canvas.create_rectangle(
                 x*cs, y*cs, (x+1)*cs, (y+1)*cs,
                 fill="green", width=0
-            )
+        )
         self.canvas.create_text(
             5, 5,
             anchor="nw",
@@ -103,8 +90,8 @@ class Game:
             self.game_over()
             return
         self.snake.insert(0, new_head)
-        if new_head == self.food["pos"]:
-            self.score += self.food["weight"]
+        if new_head == self.food:
+            self.score += 1
             if self.speed > 60:
                 self.speed -= 5
             self.food = self.spawn_food()
