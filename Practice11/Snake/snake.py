@@ -117,38 +117,3 @@ class Game:
         text = font.render(f"Score: {self.score}  Level: {self.level}", True, WHITE)
         screen.blit(text, (5, 5))
         pygame.display.flip()
-
-def main():
-    pygame.init()
-    screen = pygame.display.set_mode((WIDTH, HEIGHT))
-    pygame.display.set_caption("Snake (pygame)")
-    font = pygame.font.SysFont("Arial", 20)
-    game = Game()
-
-    while True:
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                pygame.quit()
-                sys.exit()
-
-            if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_UP:
-                    game.change_direction("UP")
-                elif event.key == pygame.K_DOWN:
-                    game.change_direction("DOWN")
-                elif event.key == pygame.K_LEFT:
-                    game.change_direction("LEFT")
-                elif event.key == pygame.K_RIGHT:
-                    game.change_direction("RIGHT")
-
-        alive = game.move()
-        if not alive:
-            print("GAME OVER. Score:", game.score)
-            pygame.quit()
-            sys.exit()
-
-        game.draw(screen, font)
-        game.clock.tick(game.speed)
-
-if __name__ == "__main__":
-    main()
